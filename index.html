@@ -2,10 +2,44 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
     <title>My Website</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
+
+    <!-- name & logo - upon being clicked it reloads the page entirely -->
+    <div class="compName">
+        <a href="index.html" style="text-decoration: none;"><h1>SHADOW</h1></a>
+    </div>
+
+    <!-- Input form -->
+    <div class ="container">
+        <form id="user-word">
+            <input type="text" id="text-box" placeholder="Insert Text">
+            <input type="submit" id="submit-btn" value="Submit">
+            <input type="reset" id="reset-btn" value="Reset" onclick="reloadP()">
+        </form>
+    </div>
+
+    <!-- Search Results -->
+    <div class="search-result">
+        <div id="word">
+            <h3>Word</h3>
+        </div>
+            <br>
+        <div id="phonetic">
+            <h3>Phonetic</h3>
+        </div>
+            <br>
+        <div id="definition">
+            <h3>Definition</h3>
+        </div>
+    </div>
+
+    
+
+
     <script src="script.js"></script> 
   </body>
 </html> 

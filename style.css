@@ -1,3 +1,41 @@
-body {
-    background: blue;
-  } 
+body{
+    background: black;
+}
+
+/* LOGO */
+div.compName h1{
+    background-color: black;
+    border-color: blanchedalmond;
+    cursor:pointer;
+    font-family: 'Pattaya', sans-serif;
+    font-size: 40px;
+    padding: 0;
+    border:none;
+    text-decoration: none;
+    color: white;    
+}
+
+/* Form container */
+div.container{
+    text-align: center;    
+}
+
+/* WORD BOX*/
+form#user-word input#text-box{
+    width: 25%;
+    background-color: rgb(224, 223, 223);
+}
+
+/* Submit button */
+form#user-word input#submit-btn{
+    font-family: 'Pattaya', sans-serif;
+    color: red;
+    cursor: pointer;
+}
+
+/* Reset button */
+form#user-word input#reset-btn{
+    font-family: 'Pattaya', sans-serif;
+    color: red;
+    cursor: pointer;
+}
