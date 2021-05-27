@@ -15,33 +15,30 @@
     //d. See if you can include some exercises on the page
     //e. interactivity for like button or comments
 
-// 5/25 To do
+//To do
     //1. Link input form to aValue input thing - DONE
     //2. add event listener to to submit button -DONE
     //3. add event listener (DOMCONTENTLOADED) to document - DONE
-    //4. add event listener to reset button 
+    //4. add event listener to reset button - DONE
     //5. include a like button 
-    //6. list values on page 
-    //7. ensure that word is listed in word container
+    //6. list values on page - DONE
+    //7. ensure that word is listed in word container - DONE
     //EXTRA CREDIT: How to add a new word without clearing/RESETTING the form?
     //EXTRA CREDIT: add a section for testing yourself. How would you use this in a sentence? 
     //EXTRA CREDIT: How to save progress? Both word and definition.
 //================================================================================================
 
 // For reset button to reload page
-function reloadP(){
+const restBtn = document.querySelector("#reset-btn")
+restBtn.addEventListener("click", reloadP)
+function reloadP() {
     location.reload()
 }
 
 //================================================================================================
-document.addEventListener("DOMContentLoaded",function(){
-
-})
-//================================================================================================
-
 const createForm = document.querySelector("#user-word")
 
-//Add event listener to submit button 
+//Add event listener to form 
 createForm.addEventListener("submit", function(e){
     //1. prevent page from reloading once submit button is clicked
     e.preventDefault()
@@ -56,11 +53,10 @@ createForm.addEventListener("submit", function(e){
 
     //3. Make reset button clear the form
     createForm.reset()
-    
-//----------------------------------------------------------------------------------
- 
-    //1.Get definition(s) - FETCH
-    const URL = `https://wordsapiv1.p.rapidapi.com/words/${inputVal}/definitions`
+  
+    //---------------------------------------------------------------------------------
+
+    const URL = `https://wordsapiv1.p.rapidapi.com/words/${inputVal}`
     fetch(URL, {
         "method": "GET",
         "headers": {
@@ -69,86 +65,106 @@ createForm.addEventListener("submit", function(e){
         }
     })
         .then(res => res.json())
-        .then(wordObject => wordObject.definitions.forEach(displayDef))
-        // .then(console.log)
+        .then(wordObject => wordObject.results.forEach(displayDef))
+        //  .then(console.log)
         .catch(err => {
             console.error(err);
         });
 
-    //2. Render data
     function displayDef(forWord) {
-
         const wordDefContainer = document.querySelector("#meaning")
         const wordMeaning = document.createElement('li')
         wordMeaning.innerText = forWord.definition
         wordDefContainer.appendChild(wordMeaning)
 
-        const partSpeechContain = document.querySelector("#speech-part")
-        const wordSpeechPart = document.createElement('li')
-        wordSpeechPart.innerText = forWord.partOfSpeech
-        partSpeechContain.appendChild(wordSpeechPart)
+        if (forWord.partOfSpeech) {
+            const partSpeechContain = document.querySelector("#speech-part")
+            const wordSpeechPart = document.createElement('li')
+            wordSpeechPart.innerText = forWord.partOfSpeech
+            partSpeechContain.appendChild(wordSpeechPart)
+        }
 
+        if (forWord.synonyms !== undefined) {
+            const wordSynContain = document.querySelector("#word-syns")
+            const wordSynPart = document.createElement('li')
+            wordSynPart.innerText = forWord.synonyms
+            wordSynContain.appendChild(wordSynPart)
+        }
+
+        if (forWord.similarTo !== undefined){
+        const simWordsContain = document.querySelector("#like-words")
+        const simWordPart = document.createElement('li')
+        simWordPart.innerText = forWord.similarTo
+        simWordsContain.appendChild(simWordPart)
+        }
     }
-
-
-
 })
+    
+    //--------------------------------------------------------------------------------- 
+
+    const submitButton = document.querySelector("#submit-btn")
+
+    submitButton.addEventListener("click", function(e){
+        const inputVal = document.querySelector("#text-box").value
+
+        fetch(`https://wordsapiv1.p.rapidapi.com/words/${inputVal}/pronunciation`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "97014e50b4mshccb6a2a36449e19p14ca18jsnd949dc7361bc",
+                "x-rapidapi-host": "wordsapiv1.p.rapidapi.com"
+            }
+        })
+            .then(res => res.json())
+            .then(wordObj => displayPronun(wordObj.pronunciation))
+            // .then(console.log)
+            .catch(err => {
+                console.error(err);
+            });
+
+        function displayPronun(forWord) {
+            const wordPronunContain = document.querySelector("#word-pronun")
+            const wordPronunPart = document.createElement('li')
+            wordPronunPart.innerText = forWord.all
+            wordPronunContain.appendChild(wordPronunPart)
+        }
+        
+    })
+    
+
 
 
 //================================================================================
 
 // //TESTING DEFINITION API
-// const URL = `https://wordsapiv1.p.rapidapi.com/words/${inputVal}`
-// fetch(URL, {
-//     "method": "GET",
-//     "headers": {
-//         "x-rapidapi-key": "97014e50b4mshccb6a2a36449e19p14ca18jsnd949dc7361bc",
-//         "x-rapidapi-host": "wordsapiv1.p.rapidapi.com"
-//     }
-// })
-//     .then(res => res.json())
-//     .then(wordObject => wordObject.results.forEach(displayDef))
-//     // .then(console.log)
-//     .catch(err => {
-//         console.error(err);
-//     });
-
-// function displayDef(forWord) {
-
-//     const wordDefContainer = document.querySelector("#meaning")
-//     const wordMeaning = document.createElement('li')
-//     wordMeaning.innerText = forWord.definition
-//     wordDefContainer.appendChild(wordMeaning)
-
-//     const partSpeechContain = document.querySelector("#speech-part")
-//     const wordSpeechPart = document.createElement('li')
-//     wordSpeechPart.innerText = forWord.partOfSpeech
-//     partSpeechContain.appendChild(wordSpeechPart)
-
-//     const wordSynContain = document.querySelector("#word-syns")
-//     const wordSynPart = document.createElement('li')
-//     wordSynPart.innerText = forWord.synonyms
-//     wordSynContain.appendChild(wordSynPart)
-//     //ask hanaa for help removing pieces of unwanted data - UNDEFINED synonyms
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //1. FETCH
+        // //DEFINITION
+        // const defURL = `https://wordsapiv1.p.rapidapi.com/words/${inputVal}/definitions`
+        // fetch(defURL, {
+        //     "method": "GET",
+        //     "headers": {
+        //         "x-rapidapi-key": "97014e50b4mshccb6a2a36449e19p14ca18jsnd949dc7361bc",
+        //         "x-rapidapi-host": "wordsapiv1.p.rapidapi.com"
+        //     }
+        // })
+        //     .then(res => res.json())
+        //     .then(wordObject => wordObject.definitions.forEach(displayDef))
+        //     // .then(console.log)
+        //     .catch(err => {
+        //         console.error(err);
+        //     });
+            
+    
+        // //2. Render data
+        // function displayDef(forWord) {
+    
+        //     const wordDefContainer = document.querySelector("#meaning")
+        //     const wordMeaning = document.createElement('li')
+        //     wordMeaning.innerText = forWord.definition
+        //     wordDefContainer.appendChild(wordMeaning)
+    
+        //     const partSpeechContain = document.querySelector("#speech-part")
+        //     const wordSpeechPart = document.createElement('li')
+        //     wordSpeechPart.innerText = forWord.partOfSpeech
+        //     partSpeechContain.appendChild(wordSpeechPart)
+    
+        // }

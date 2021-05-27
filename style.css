@@ -39,3 +39,8 @@ form#user-word input#reset-btn{
     color: red;
     cursor: pointer;
 }
+
+.search-result{
+    text-align: center;
+    
+}
