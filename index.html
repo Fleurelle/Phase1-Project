@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
     <title>My Website</title>
-  </head>
-  <body>
+</head>
+
+<body>
 
     <!-- name & logo - upon being clicked it reloads the page entirely -->
     <div class="compName">
-        <a href="index.html" style="text-decoration: none;"><h1>SHADOW</h1></a>
+        <a href="index.html" style="text-decoration: none;">
+            <h1>SHADOW</h1>
+        </a>
     </div>
 
+    <!-- <div class="row">
+        <div class="column"> -->
     <!-- Input form -->
-    <div class ="container">
+    <div class="container">
         <form id="user-word">
             <input type="text" id="text-box" placeholder="Insert Text">
             <input type="submit" id="submit-btn" value="Submit">
@@ -22,34 +28,51 @@
         </form>
     </div>
 
-    <!-- Search Results -- I ONLY COMMENTED IT OUT IN CASE THE API LISTS ALL OF THOSE ITSEF -->
+    <!-- Search Results -->
     <div class="search-result">
         <div id="word">
             <h3>Word</h3>
         </div>
-            <br>
+        <br>
         <div id="word-pronun">
             <h3>Phonetic Spelling</h3>
         </div>
-            <br>
+        <br>
         <div id="meaning">
             <h3>Meaning(s)</h3>
         </div>
-            <br>
+        <br>
         <div id="speech-part">
             <h3>Part of Speech</h3>
         </div>
-            <br>
+        <br>
         <div id="word-syns">
             <h3>Synonyms</h3>
         </div>
-            <br>
+        <br>
         <div id="like-words">
             <h3>Similar Words</h3>
         </div>
     </div>
+    </div>
 
 
-    <script src="script.js"></script> 
-  </body>
-</html> 
+    <!-- Comment section -->
+    <!-- <div class="column"> -->
+    <div class="comment-container">
+        <h2>Leave a comment</h2>
+        <form id="comment">
+            <textarea placeholder="Add Your Comment"></textarea>
+            <div class="comment-btns">
+                <input id="button" type="submit" value="Comment">
+                <input type="reset" id="clear" value="Cancel" onclick="reloadP()">
+            </div>
+        </form>
+        <div id="commentList"></div>
+    </div>
+    <!-- </div>
+    </div> -->
+    <script src="script.js"></script>
+</body>
+
+</html>

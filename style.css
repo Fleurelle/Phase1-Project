@@ -8,13 +8,28 @@ div.compName h1{
     border-color: blanchedalmond;
     cursor:pointer;
     font-family: 'Pattaya', sans-serif;
-    font-size: 40px;
+    font-size: 20px;
     padding: 0;
     border:none;
     text-decoration: none;
     color: white;    
 }
 
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  
 /* Form container */
 div.container{
     text-align: center;    
@@ -22,7 +37,7 @@ div.container{
 
 /* WORD BOX*/
 form#user-word input#text-box{
-    width: 25%;
+    width: 40%;
     background-color: rgb(224, 223, 223);
 }
 
@@ -44,3 +59,37 @@ form#user-word input#reset-btn{
     text-align: center;
     
 }
+
+/* COMMENT BOX*/
+form#comment input#comment-box{
+    width: 70%;
+    background-color: rgb(224, 223, 223);
+
+}
+
+textarea
+{
+    height: 20px;
+    width: 40%;
+    border: none;
+    border-bottom: 2px solid #aaa;
+    background-color: transparent;
+    margin-bottom: 10px;
+    resize: none;
+    outline: none;
+    transition: .5s
+}
+
+/* Comment button*/
+form#comment div.comment-btns input#button {
+    font-family: 'Pattaya', sans-serif;
+    color: red;
+    cursor: pointer;
+} 
+
+/* Cancel button */
+form#comment div.comment-btns #clear {
+    font-family: 'Pattaya', sans-serif;
+    color: red;
+    cursor: pointer;
+} 
